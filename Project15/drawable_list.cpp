@@ -322,9 +322,4 @@ bool Iterator::valid() const
 			return false;
 	}
 }
-/*
-Iterator::Iterator(const Iterator& other)
-{
 
-}
-*/
