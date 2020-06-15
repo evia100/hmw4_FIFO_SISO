@@ -89,16 +89,88 @@ void DrawableList::push_back(Drawable& item)
 	}
 }
 
-
-
 void DrawableList::erase(Iterator& it)
 {
-	it.invalidate();
+	if (it.ptr == nullptr)
+		return;
+	else {
+		it.ptr->valid = false;
+	}
 
 }
-
-
 int DrawableList::get_size() const
 {
 	return size;
 }
+Iterator DrawableList::begin()
+{
+	PNode curr = head;
+	int temp_size = size;
+	if (curr->valid == true) {
+		Iterator new_itr = Iterator(*curr);
+		return new_itr;
+	}
+	else
+	{
+		while (temp_size != 1) // already checked the head
+		{
+			curr = curr->next;
+			if (curr->valid == true)
+			{
+				Iterator new_itr = Iterator(*curr);
+				return new_itr;
+			}
+			temp_size--;
+		}
+	}
+	// invalid_itr points to nullptr.
+	Iterator invalid_itr = Iterator();
+	return invalid_itr;
+	
+}
+
+Iterator DrawableList::end()
+{
+	PNode curr=tail;
+	int temp_size = size;
+	if (curr->valid == true) {
+		Iterator new_itr = Iterator(*curr);
+		return new_itr;
+	}
+	else
+	{
+		while (temp_size != 1) // already checked the head
+		{
+			curr = curr->prev;
+			if (curr->valid == true)
+			{
+				Iterator new_itr = Iterator(*curr);
+				return new_itr;
+			}
+			temp_size--;
+		}
+	}
+
+	Iterator invalid_itr = Iterator();
+	return invalid_itr;
+}
+
+
+
+
+///* iterator functions *///
+// no param ctor,initalize the iterator with nullptr.
+Iterator::Iterator() : ptr(nullptr) {};
+
+void Iterator::decrease_counter()
+{
+	this->ptr->iterator_counter--;
+
+}
+
+/*
+Iterator::Iterator(const Iterator& other)
+{
+
+}
+*/
