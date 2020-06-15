@@ -139,9 +139,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="apple.cpp" />
     <ClCompile Include="drawable_list.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="mini_gui.cpp" />
+    <ClCompile Include="monster.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="apple.h" />
