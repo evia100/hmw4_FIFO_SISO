@@ -55,7 +55,7 @@ public:
 	 * @brief Draw the object
 	 */
 	virtual void draw() = 0;
-	
+
 	/**
 	 * @brief Is called whenever any refresh is required.
 	 * See Mini-Gui refresh method.
@@ -63,7 +63,7 @@ public:
 	virtual void refresh() = 0;
 
 	/*
-	 * @brief Return an ID that is unique to 
+	 * @brief Return an ID that is unique to
 	 * the type of the drawable object.
 	 */
 	virtual int id() = 0;

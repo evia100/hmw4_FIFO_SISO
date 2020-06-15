@@ -1,6 +1,6 @@
 #ifndef DRAWABLE_LIST_H
 #define DRAWABLE_LIST_H
-// make some changes
+
 #include "drawable.h"
 
 // A node for the linked-list implementation
