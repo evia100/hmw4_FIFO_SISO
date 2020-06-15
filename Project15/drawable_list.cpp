@@ -93,10 +93,55 @@ void DrawableList::erase(Iterator& it)
 {
 	if (it.ptr == nullptr)
 		return;
-	else {
-		it.ptr->valid = false;
+	if (size == 0) // no nodes at all
+	{
+		return;
 	}
+	if (size == 1) // only one node in the list.
+	{
+		// head/tail->next and head/tail->prev is already nullptr.
+		PNode curr = it.ptr;
+		curr->next = nullptr;
+		curr->prev = nullptr;
+		head = nullptr;
+		tail = nullptr;
+		size = 0;
+	}
+	else if (it.ptr == head) // the node is the head of the list
+	{
+		PNode curr = it.ptr;
+		
+		head = curr->next;
+		curr->next->prev = nullptr;
+		curr->next = nullptr;
+		curr->prev = nullptr;
+		size--;
+	}
+	else if (it.ptr==tail) // the node is the tail of the list
+	{
+		PNode curr = it.ptr;
 
+		tail = curr->prev;
+		curr->prev->next = nullptr;
+
+		curr->next = nullptr;
+		curr->prev = nullptr;
+		size--;
+	}
+	else // somewhere in the middle.
+	{
+		PNode curr_next, curr_prev, curr;
+		curr = it.ptr;
+		curr_next = curr->next;
+		curr_prev = curr->prev;
+		// disconnect the curr node
+		curr_prev->next = curr_next;
+		curr_next->prev = curr_prev;
+		curr->next = nullptr;
+		curr->prev = nullptr;
+		size--;
+	}
+	it.invalidate();
 }
 int DrawableList::get_size() const
 {
@@ -161,13 +206,122 @@ Iterator DrawableList::end()
 ///* iterator functions *///
 // no param ctor,initalize the iterator with nullptr.
 Iterator::Iterator() : ptr(nullptr) {};
+Iterator::Iterator(Node& n) : ptr(&n) {
+	this->increase_counter();
+}
+Iterator::Iterator(const Iterator& other) {
+	ptr = other.ptr;
+	this->increase_counter();
+}
+Iterator::~Iterator()
+{
+		this->decrease_counter();
+}
+void Iterator::invalidate()
+{
+	if (this->ptr == nullptr)
+		return;
+	else {
+		this->ptr->valid = false;
+	}
+}
 
 void Iterator::decrease_counter()
 {
+	if (this->ptr == nullptr)
+		return;
 	this->ptr->iterator_counter--;
+	if (this->ptr->iterator_counter == 0 && this->ptr->valid==false)
+	{
+		delete this->ptr->item;
+		delete this->ptr;
+	}
 
 }
 
+void Iterator::increase_counter()
+{
+	if (this->ptr == nullptr)
+		return;
+	else 
+	{ 
+		// should i increase by one only if the node is valid?
+		if (this->ptr->valid == true)
+		{
+			this->ptr->iterator_counter++;
+		}
+		else
+			return;
+	}
+}
+
+Drawable* Iterator::get_object()
+{
+	if (this->ptr == nullptr)
+		return nullptr;
+	return this->ptr->item;
+}
+
+Iterator& Iterator::set(const Iterator& other)
+{
+	if (this == &other)
+	{
+		this->increase_counter();
+		return *this;
+	}
+	else
+	{
+		this->decrease_counter();
+		this->ptr = other.ptr;
+		this->increase_counter();
+		return *this;
+	}
+}
+
+Iterator& Iterator::next()
+{
+	PNode curr_ptr = this->ptr;
+	this->decrease_counter();
+	while (curr_ptr->next->valid == false && curr_ptr!=nullptr)
+	{
+		curr_ptr = curr_ptr->next;
+	}
+	if (curr_ptr != nullptr)
+	{
+		this->ptr = curr_ptr;
+		this->increase_counter();
+	}
+	return *this;
+}
+
+Iterator& Iterator::prev()
+{
+	PNode curr_ptr = this->ptr;
+	this->decrease_counter();
+	while (curr_ptr->prev->valid == false && curr_ptr != nullptr)
+	{
+		curr_ptr = curr_ptr->prev;
+	}
+	if (curr_ptr != nullptr)
+	{
+		this->ptr = curr_ptr;
+		this->increase_counter();
+	}
+	return *this;
+}
+
+bool Iterator::valid() const
+{
+	if (this->ptr == nullptr)
+		return false;
+	else
+	{
+		if (this->ptr->valid == true)
+			return true;
+		else
+			return false;
+	}
+}
 /*
 Iterator::Iterator(const Iterator& other)
 {
