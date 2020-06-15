@@ -1,7 +1,7 @@
 #include "drawable.h"
 #include "drawable_list.h"
 
-/*** typedefs ***/
+/* typedefs */
 typedef struct Node* PNode;
 typedef struct Node Node;
 
@@ -17,6 +17,7 @@ DrawableList::~DrawableList()
 		return;
 	}
 	PNode curr;
+	// deletes all nodes in drawablelist
 	while (size != 0)
 	{
 		curr = head->next;
@@ -35,20 +36,28 @@ void DrawableList::push_front(Drawable& item)
 	// if the list is empty
 	if (size == 0)
 	{
+		new_node->item = &item;
+		new_node->valid = true;
 		head = new_node;
+		tail = new_node;
 		size++;
-		// next,prev,item,iterator counter,valid is set by node c'tor ? 
+
 	}
 	else
 	{
+		// new node prev is set to nullptr
 		new_node->next = head;
 		head->prev = new_node;
 
+		new_node->item = &item;
+		new_node->valid = true;
 		head = new_node;
+		size++;
+
+
 
 		// new_node prev is initalized already to nullptr by ctor
-		// iterator counter initalized to 0 , valid is false.
-		new_node->item = &item;
+		// iterator counter initalized to 0 
 	}
 }
 
@@ -56,17 +65,40 @@ void DrawableList::push_back(Drawable& item)
 {
 	PNode new_node = new Node;
 
-	// new_node next is initalized already to nullptr by ctor
-	// iterator counter initalized to 0 , valid is false.
-	tail->next = new_node;
-	new_node->prev = tail;
+	if (size == 0)
+	{
+		new_node->item = &item;
+		new_node->valid = true;
+		head = new_node;
+		tail = new_node;
+		size++;
+	}
+	else
+	{
+		// new node next is set to nullptr
+		new_node->prev = tail;
+		tail->next = new_node;
 
-	tail = new_node;
+		new_node->item = &item;
+		new_node->valid = true;
+		tail = new_node;
+		size++;
+
+		// new_node next is initalized already to nullptr by ctor
+		// iterator counter initalized to 0 
+	}
 }
+
 
 
 void DrawableList::erase(Iterator& it)
 {
 	it.invalidate();
 
+}
+
+
+int DrawableList::get_size() const
+{
+	return size;
 }
