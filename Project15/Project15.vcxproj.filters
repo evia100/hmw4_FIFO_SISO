@@ -24,10 +24,7 @@
     <ClCompile Include="mini_gui.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="apple.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="monster.cpp">
+    <ClCompile Include="drawable.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
