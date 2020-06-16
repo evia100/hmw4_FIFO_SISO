@@ -165,6 +165,27 @@ public:
 	 * @brief Returns an iterator to the end of the list
 	 */
 	Iterator end();
+
+	void print();
+};
+
+
+/***** TESTING *****/
+class A : public Drawable {
+protected:
+	static int ID_;
+	struct rect next_bb;
+public:
+	A(struct rect bb);
+	virtual ~A();
+	virtual void print();
+	virtual void move(direction_t direction);   //subs
+	virtual void draw();	//sub
+	virtual void refresh();
+	static int get_ID();
+	virtual int id();
+	virtual void step(DrawableList& lst);
+
 };
 
 #endif 
