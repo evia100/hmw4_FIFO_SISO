@@ -104,6 +104,10 @@ public:
 	 * @breif Returns true iff this is valid
 	 */
 	bool valid() const;
+private:
+	// initialize the iterator to point to nullptr.
+	Iterator();
+
 };
 
 // A list of Drawable objects

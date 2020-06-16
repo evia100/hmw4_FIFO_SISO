@@ -86,7 +86,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
     <Link>
@@ -139,16 +139,20 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="apple.cpp" />
+    <ClCompile Include="drawable.cpp" />
+    <ClCompile Include="drawable_list.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="mini_gui.cpp" />
+    <ClCompile Include="monster.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="apple.h" />
     <ClInclude Include="ascii_objects.h" />
     <ClInclude Include="drawable.h" />
     <ClInclude Include="drawable_list.h" />
     <ClInclude Include="mini_gui.h" />
     <ClInclude Include="monster.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="drawable_list.cpp" />
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="mini_gui.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
