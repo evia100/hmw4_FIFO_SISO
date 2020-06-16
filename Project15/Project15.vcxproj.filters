@@ -15,19 +15,30 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ascii_objects.h">
+    <ClCompile Include="..\..\evia100\hw4\mini_gui.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\evia100\hw4\drawable_list.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\evia100\hw4\main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\evia100\hw4\drawable.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="drawable.h">
+    <ClInclude Include="..\..\evia100\hw4\drawable_list.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="drawable_list.h">
+    <ClInclude Include="..\..\evia100\hw4\mini_gui.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="mini_gui.h">
+    <ClInclude Include="..\..\evia100\hw4\monster.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="monster.h">
+    <ClInclude Include="..\..\evia100\hw4\ascii_objects.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
