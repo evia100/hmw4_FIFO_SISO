@@ -1,5 +1,8 @@
 #include "drawable.h"
 #include "drawable_list.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <iostream>
 
 /* typedefs */
 typedef struct Node* PNode;
@@ -323,3 +326,152 @@ bool Iterator::valid() const
 	}
 }
 
+
+int main() {
+	// Test1: A Objects Only:
+	cout << "Test1 - Objects Only:" << endl;
+	struct rect b1 = { 1,1,1,1 };
+	struct rect b2 = { 2,2,2,2 };
+	struct rect b3 = { 3,3,3,3 };
+	struct rect b4 = { 4,4,4,4 };
+	struct rect b5 = { 5,5,5,5 };
+	A* a1 = new A(b1), * a2 = new A(b2), * a3 = new A(b3), * a4 = new A(b4), * a5 = new A(b5);
+	a1->print();
+	a3->print();
+	a5->print();
+
+
+	// Test2: pointers:
+	cout << endl << endl << "Test2: pointers:" << endl;
+	A* a = new A(b1);
+	a->print();
+	delete a;
+	Drawable* d;
+	d = new A(b2);
+	d->print();
+	delete d;
+
+
+	//Test3: List push
+	cout << endl << endl << "Test3 - List push elem:" << endl;
+	DrawableList L;
+	L.push_back(*a3);
+	L.push_front(*a2);
+	L.push_back(*a4);
+	L.push_front(*a1);
+	L.push_back(*a5);
+	L.print();
+	cout << " list size is: " << L.get_size() << endl;
+
+
+	//Test4: Iterators print
+	cout << endl << endl << "Test4 - Iterators print" << endl;
+	cout << "List is:" << endl;
+	L.print();
+	Iterator t1 = L.begin(), t2 = L.end(), t3 = L.begin();
+	cout << "t1 is at: ";
+	t1.get_object()->print();
+	cout << "t2 is at: ";
+	t2.get_object()->print();
+	cout << "t3 is at: ";
+	t3.get_object()->print();
+	t3.next();
+	t3.next();
+	t2.next();
+	t1.prev();
+	t3.next();
+	t3.prev();
+
+	cout << "t1 is at: ";
+	if (t1.valid()) {
+		t1.get_object()->print();
+	}
+	else {
+		cout << "iterator not valid!" << endl;
+	}
+
+	cout << "t2 is at: ";
+	if (t2.valid()) {
+		t2.get_object()->print();
+	}
+	else {
+		cout << "iterator not valid!" << endl;
+	}
+
+	cout << "t3 is at: ";
+	if (t3.valid()) {
+		t3.get_object()->print();
+	}
+	else {
+		cout << "iterator not valid!" << endl;
+	}
+	cout << " list size is: " << L.get_size() << endl;
+	L.print();
+
+
+	//Test5: Empty List
+	cout << endl << endl << "Test5 - Empty list" << endl;
+	cout << "List is:" << endl;
+	DrawableList L2;
+	L2.print();
+	Iterator t4 = L2.begin();
+	if (t4.valid()) {
+		t4.get_object()->print();
+	}
+	else {
+		cout << "iterator not valid!" << endl;
+	}
+
+
+	//Test6: Iterator invalidate
+	cout << endl << endl << "Test6 - Iterator invalidate" << endl;
+
+	t1.set(L.begin());
+	t2.set(L.begin());
+	t3.set(L.begin());
+	t4.set(L.begin());
+	cout << endl << "List is:" << endl;
+	L.print();
+
+	t4.next();
+	t4.next();
+	t2.next();
+	t2.next();
+	cout << endl << "List is:" << endl;
+	L.erase(t2);
+	L.print();
+
+	cout << endl;
+	t2.get_object()->print();
+	t4.get_object()->print();
+	cout << endl;
+	t4.prev();
+	t2.get_object()->print();
+	t4.get_object()->print();
+	cout << endl;
+	t2.next();
+	t2.prev();
+	t2.get_object()->print();
+	t4.get_object()->print();
+
+	L.erase(t1);
+	L.print();
+	cout << endl;
+	t1.get_object()->print();
+	t3.get_object()->print();
+	cout << endl;
+	t1.next();
+	t3.next();
+	t1.get_object()->print();
+	t3.get_object()->print();
+	t1.prev();
+
+
+	if (t1.valid()) {
+		t1.get_object()->print();
+	}
+	else {
+		cout << "iterator not valid!" << endl;
+	}
+	return 0;
+}
