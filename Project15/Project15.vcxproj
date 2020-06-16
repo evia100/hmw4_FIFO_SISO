@@ -18,22 +18,6 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="apple.h" />
-    <ClInclude Include="ascii_objects.h" />
-    <ClInclude Include="drawable.h" />
-    <ClInclude Include="drawable_list.h" />
-    <ClInclude Include="mini_gui.h" />
-    <ClInclude Include="monster.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="apple.cpp" />
-    <ClCompile Include="drawable.cpp" />
-    <ClCompile Include="drawable_list.cpp" />
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="mini_gui.cpp" />
-    <ClCompile Include="monster.cpp" />
-  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <ProjectGuid>{1B0B607B-3FB9-42B9-8A88-A5A7FD86FE65}</ProjectGuid>
