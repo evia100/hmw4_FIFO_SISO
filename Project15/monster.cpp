@@ -58,7 +58,7 @@ public:
 			};
 			break;
 		case right:
-			if (this->bounding_box.x - this->bounding_box.width - vel > screen_size.x-screen_size.width) {
+			if (this->bounding_box.x - this->bounding_box.width - vel > screen_size.x - screen_size.width) {
 				this->next_bb.x = this->bounding_box.x - vel;
 			};
 			break;
@@ -75,55 +75,66 @@ public:
 		};
 		this->direction_counter++;
 	}
-		/**
-		 * @brief Draw the object
-		 */
-		virtual void draw() {
-			mini_gui_clear_rect(this->mg, this->bounding_box);
-			mini_gui_print_rect(this->mg, next_bb, gfx);
-		};
+	/**
+	 * @brief Draw the object
+	 */
+	virtual void draw() {
+		mini_gui_clear_rect(this->mg, this->bounding_box);
+		mini_gui_print_rect(this->mg, next_bb, gfx);
+	};
 
-		/**
-		 * @brief Return an ID that is unique to
-		 * the dynamid type of the drawable object.
-		 */
-		virtual int id();
+	/**
+	 * @brief Return an ID that is unique to
+	 * the dynamid type of the drawable object.
+	 */
+	virtual int id();
 
-		/**
-		 * @brief Is called whenever any refresh is required
-		 */
-		virtual void refresh() {
-			if (this->level < 5) {
-				this->vel = 1;
-				this->gfx = MONSTER0;
-			}
-			else if (this->level >= 5 and this->level < 15) {
-				this->vel = 1;
-				this->gfx = MONSTER1;
-				this->next_bb.height = 5
-			}
-			else if (this->level >= 15 and this->level < 25) {
-				this->vel = 1;
-				this->gfx = MONSTER2;
-				this->next_bb.height = 5
-			}
-			else {
-				this->vel = 2;
-				this->gfx = MONSTER3;
-				this->next_bb.height = 5;
-			};
-		};
-
-		/**
-		 * @brief Do a step in the 'game of life'
-		 * @param lst A list of all drawable objects in the world
-		 */
-		virtual void step(DrawableList& lst) {
-			for (int i = 0; i < len(lst), i++) {
-				if (lst[i]->id == APPLE) {
-					lst[i].remove()
-				}
-
-			};
+	/**
+	 * @brief Is called whenever any refresh is required
+	 */
+	virtual void refresh() {
+		if (this->level < 5) {
+			this->vel = 1;
+			this->gfx = MONSTER0;
+		}
+		else if (this->level >= 5 and this->level < 15) {
+			this->vel = 1;
+			this->gfx = MONSTER1;
+			this->next_bb.height = 5
+		}
+		else if (this->level >= 15 and this->level < 25) {
+			this->vel = 1;
+			this->gfx = MONSTER2;
+			this->next_bb.height = 5
+		}
+		else {
+			this->vel = 2;
+			this->gfx = MONSTER3;
+			this->next_bb.height = 5;
 		};
 	};
+
+	/**
+	 * @brief Do a step in the 'game of life'
+	 * @param lst A list of all drawable objects in the world
+	 */
+	virtual void step(DrawableList& lst) {
+		for (int i = 0; i < len(lst), i++) {
+			if collide(this, lst[i]) {
+				if (lst[i]->id == APPLE) {
+					lst[i].remove();
+					this->level++;
+				}
+				else if (lst[i]->id == MONSTER) {
+					if (lst[i]->level > this->level) {
+						mini_gui_clear_rect(this->mg, this->bounding_box);
+						this->level += lst[i]->level;
+					}
+				}
+				refresh();
+			}
+
+
+		};
+	};
+};
