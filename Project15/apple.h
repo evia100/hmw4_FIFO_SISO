@@ -1,6 +1,5 @@
 #ifndef APPLE_H
 #define APPLE_H
-#define APPLE_ID 2;
 #include "drawable.h"
 
 class Apple : public Drawable {

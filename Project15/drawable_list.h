@@ -166,11 +166,12 @@ public:
 	 */
 	Iterator end();
 
-	void print();
+	//void print();
 };
 
 
 /***** TESTING *****/
+/*
 class A : public Drawable {
 protected:
 	static int ID_;
@@ -185,7 +186,7 @@ public:
 	static int get_ID();
 	virtual int id();
 	virtual void step(DrawableList& lst);
-
+	
 };
-
+*/
 #endif 

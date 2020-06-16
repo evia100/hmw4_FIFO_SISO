@@ -181,11 +181,9 @@ Iterator DrawableList::begin()
 				temp_size--;
 			}
 		}
-		// invalid_itr points to nullptr.
-		Iterator invalid_itr = Iterator();
-		return invalid_itr;
 	}
-
+	Iterator invalid_itr = Iterator();
+	return invalid_itr;
 }
 
 Iterator DrawableList::end()
@@ -220,6 +218,7 @@ Iterator DrawableList::end()
 ///* iterator functions *///
 // no param ctor,initalize the iterator with nullptr.
 Iterator::Iterator() : ptr(nullptr) {};
+
 Iterator::Iterator(Node& n) : ptr(&n) {
 	this->increase_counter();
 }
@@ -450,9 +449,8 @@ bool Iterator::valid() const
 
 
 
-
-
 /***** TESTING *****/
+/*
 int A::ID_ = 11;
 int A::get_ID() {
 	return ID_;
@@ -531,7 +529,9 @@ void A::step(DrawableList& lst) {
 		}
 	}
 }
+*/
 
+/*
 
 int main() {
 
@@ -716,3 +716,4 @@ int main() {
 
 	return 0;
 }
+*/

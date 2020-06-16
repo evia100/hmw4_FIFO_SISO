@@ -94,21 +94,31 @@ void Monster::refresh() {
 	}
 }
 
-void Monster::step(DrawableList& lst) {
-	for (Iterator it = lst.begin(); it.valid(); it.next) {
-		if (collide(it.get_object)) {
-			if (it.get_object.id == APPLE_ID) {
-				it.
-				level++;
+void Monster::step(DrawableList &lst) 
+{
+	
+	for (Iterator it = lst.begin(); it.valid(); it.next) 
+	{
+		Drawable* object = dynamic_cast<Drawable*>(it.get_object());
+		if (collide(it.get_object)) 
+		{
+			if ((int)object->id==APPLE_ID) 
+			{
+				this->level++;
+
 			}
-			else if (it.id == MONSTER_ID) {
-				if (it.level > level) {
-					it.level += level;
+			else if ((int)object->id == MONSTER_ID)
+			{
+				Monster* object = dynamic_cast<Monster*>(it.get_object());
+				if ( object->level >= this->level) {
+					object->level += this->level;
+					
 					mini_gui_clear_rect(mg, bounding_box);
 				}
-				else if (it.level < level) {
-					level += it.level;
-					mini_gui_clear_rect(it.mg, it.bounding_box);
+				else if (object->level < this->level)
+				{
+					this->level += object->level;
+					mini_gui_clear_rect(object->mg, object->bounding_box);
 				}
 			}
 			refresh();
