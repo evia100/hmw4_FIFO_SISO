@@ -24,7 +24,7 @@
     <ClCompile Include="mini_gui.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="apple.cpp">
+    <ClCompile Include="monster.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="drawable.cpp">
@@ -36,17 +36,11 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="mini_gui.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="monster.cpp">
+    <ClCompile Include="mini_gui.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="drawable_list.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="mini_gui.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -60,6 +54,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="drawable.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="drawable_list.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
