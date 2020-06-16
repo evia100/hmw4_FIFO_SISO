@@ -2,44 +2,28 @@
 #include "ascii_objects.h"
 #include "drawable.h"
 
-class Apple : public Drawable {
+Apple::Apple(unsigned short x, unsigned short y) : Drawable({x, y, 1, 1}), gfx(APPLE) {};
 
-	// The gfx of the apple
-	const char* gfx = APPLE;
+void Apple::move() {
+	return;
+}
 
-public:
-
-	/**
-	 * @brief Initiate an apple
-	 */
-	Apple(unsigned short x, unsigned short y) {
-		this->bounding_box.x = x;
-		this->bounding_box.y = y;
-	};
-
-	/**
-	 * @brief Draw the object
-	 */
-	virtual void draw() {
-		mini_gui_print_rect(this->mg, this->bounding_box, this->gfx);
-	};
-
-	virtual void remove() {
-		mini_gui_clear_rect(this->mg, this->bounding_box);
-	};
-
-	/**
-	 * @brief Return an ID that is unique to
-	 * the dynamid type of the drawable object.
-	 */
-	virtual int id();
-
-	/**
-	 * @brief Is called whenever any refresh is required
-	 */
-	virtual void refresh();
-
+void Apple::draw() {
+	mini_gui_print_rect(mg, bounding_box, gfx);
 };
+
+void Apple::remove() {
+	mini_gui_clear_rect(this->mg, this->bounding_box);
+};
+
+int Apple::id() {
+	return APPLE_ID;
+}
+
+void Apple::refresh() {
+	return;
+}
+
 
 
 

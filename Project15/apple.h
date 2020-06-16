@@ -1,6 +1,6 @@
 #ifndef APPLE_H
 #define APPLE_H
-
+#define APPLE_ID 2;
 #include "drawable.h"
 
 class Apple : public Drawable {
@@ -16,9 +16,19 @@ public:
 	Apple(unsigned short x, unsigned short y);
 
 	/**
+	 * @brief Move the object in the direction
+	 */
+	virtual void move();
+
+	/**
 	 * @brief Draw the object
 	 */
 	virtual void draw();
+
+	/**
+	* @brief remove the object from the map
+	*/
+	void remove();
 
 	/**
 	 * @brief Return an ID that is unique to

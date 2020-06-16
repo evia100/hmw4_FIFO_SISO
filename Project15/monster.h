@@ -1,6 +1,9 @@
 #ifndef MONSTER_H
 #define MONSTER_H
 
+#define MONSTER_ID 1;
+#define APPLE_ID 2;
+
 #include "drawable.h"
 
 class Monster : public Drawable {
