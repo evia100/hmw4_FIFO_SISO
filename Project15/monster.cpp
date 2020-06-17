@@ -94,36 +94,40 @@ void Monster::refresh() {
 	}
 }
 
-void Monster::step(DrawableList &lst) 
+void Monster::step(DrawableList& lst)
 {
-	
-	for (Iterator it = lst.begin(); it.valid(); it.next) 
+
+	for (Iterator it = lst.begin(); it.valid(); it.next())
 	{
-		Drawable* object = dynamic_cast<Drawable*>(it.get_object());
-		if (collide(it.get_object)) 
+		//Drawable* object = dynamic_cast<Drawable*>(it.get_object());
+		//Monster* other_monster = dynamic_cast<Monster*>(it.get_object());
+		if (it.get_object()->id() == APPLE_ID && collide(*it.get_object()) && dynamic_cast<Monster*>(it.get_object()) != this) // apple collision
 		{
-			if ((int)object->id==APPLE_ID) 
-			{
-				this->level++;
-
-			}
-			else if ((int)object->id == MONSTER_ID)
-			{
-				Monster* object = dynamic_cast<Monster*>(it.get_object());
-				if ( object->level >= this->level) {
-					object->level += this->level;
-					
-					mini_gui_clear_rect(mg, bounding_box);
-				}
-				else if (object->level < this->level)
-				{
-					this->level += object->level;
-					mini_gui_clear_rect(object->mg, object->bounding_box);
-				}
-			}
+			this->level++;
+			lst.erase(it);
 			refresh();
+
 		}
-
-
-	};
-};
+		else if ((it.get_object())->id() == MONSTER_ID && collide(*it.get_object()) && dynamic_cast<Monster*>(it.get_object()) != this)
+		{
+			Monster* other_monster = dynamic_cast<Monster*>(it.get_object()); // I lost
+			if (other_monster->level >= this->level) {
+				other_monster->level += this->level;
+				// find myself in the iterator and delete
+				Iterator I = lst.begin();
+				while (dynamic_cast<Monster*>(I.get_object()) != this)
+				{
+					I.next();
+				}
+				lst.erase(I);
+				other_monster->refresh();
+			}
+			else // I won
+			{
+				this->level += other_monster->level;
+				lst.erase(it);
+				this->refresh();
+			}
+		}
+	}
+}
