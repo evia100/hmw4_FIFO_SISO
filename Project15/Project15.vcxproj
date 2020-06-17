@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="apple.cpp" />
     <ClCompile Include="drawable.cpp" />
     <ClCompile Include="drawable_list.cpp" />
     <ClCompile Include="main.cpp" />

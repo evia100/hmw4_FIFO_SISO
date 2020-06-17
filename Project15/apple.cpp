@@ -1,10 +1,12 @@
 #include "apple.h"
 #include "ascii_objects.h"
 #include "drawable.h"
+#include "monster.h"
+
 
 Apple::Apple(unsigned short x, unsigned short y) : Drawable({x, y, 1, 1}), gfx(APPLE) {};
 
-void Apple::move() {
+void Apple::move(direction_t direction) {
 	return;
 }
 
@@ -12,9 +14,10 @@ void Apple::draw() {
 	mini_gui_print_rect(mg, bounding_box, gfx);
 };
 
-void Apple::remove() {
-	mini_gui_clear_rect(this->mg, this->bounding_box);
-};
+void Apple::step(DrawableList& lst)
+{
+	return;
+}
 
 int Apple::id() {
 	return APPLE_ID;

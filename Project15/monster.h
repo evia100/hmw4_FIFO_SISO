@@ -5,6 +5,7 @@
 #define APPLE_ID 2
 
 #include "drawable.h"
+#include "drawable_list.h"
 
 class Monster : public Drawable {
 
@@ -47,7 +48,7 @@ public:
 	virtual void draw();
 
 	/**
-	 * @brief Return an ID that is unique to 
+	 * @brief Return an ID that is unique to
 	 * the dynamid type of the drawable object.
 	 */
 	virtual int id();

@@ -1,6 +1,9 @@
 #ifndef APPLE_H
 #define APPLE_H
 #include "drawable.h"
+#include "drawable_list.h"
+
+
 
 class Apple : public Drawable {
 
@@ -17,17 +20,14 @@ public:
 	/**
 	 * @brief Move the object in the direction
 	 */
-	virtual void move();
+
+	virtual void move(direction_t direction);
 
 	/**
 	 * @brief Draw the object
 	 */
 	virtual void draw();
 
-	/**
-	* @brief remove the object from the map
-	*/
-	void remove();
 
 	/**
 	 * @brief Return an ID that is unique to
@@ -40,9 +40,13 @@ public:
 	 */
 	virtual void refresh();
 
+	/*
+	 * @brief Do a step in the 'game of life'
+	 * @param lst A list of all drawable objects in the world
+	 */
+	virtual void step(DrawableList& lst);
+
 };
-
-
 
 #endif 
 

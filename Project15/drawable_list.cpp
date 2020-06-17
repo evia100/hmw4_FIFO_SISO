@@ -19,6 +19,20 @@ DrawableList::DrawableList() :
 
 DrawableList::~DrawableList()
 {
+	
+	if (size == 0)
+		return;
+	for (Iterator it = this->begin(); it.valid(); it.next())
+	{
+		erase(it);
+	}
+
+}
+
+
+/*
+DrawableList::~DrawableList()
+{
 	if (size == 0) {
 		return;
 	}
@@ -33,6 +47,7 @@ DrawableList::~DrawableList()
 		size--;
 	}
 }
+*/
 
 void DrawableList::push_front(Drawable& item)
 {

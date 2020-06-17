@@ -36,6 +36,9 @@
     <ClCompile Include="mini_gui.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="apple.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="mini_gui.h">

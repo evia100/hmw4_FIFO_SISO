@@ -7,6 +7,7 @@ Monster::Monster(unsigned short x, unsigned short y, int direction_hold) : Drawa
 level(1),
 vel(1),
 current_direction(left),
+direction_hold(0),
 direction_counter(0), gfx(MONSTER0),
 next_bb({ x, y, 1, 1 }) {};
 
