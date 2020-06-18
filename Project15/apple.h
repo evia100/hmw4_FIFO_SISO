@@ -7,6 +7,9 @@
 
 class Apple : public Drawable {
 
+	//is drawn
+	bool is_drawn;
+
 	// The gfx of the apple
 	const char* gfx;
 

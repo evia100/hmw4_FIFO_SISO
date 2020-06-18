@@ -36,13 +36,13 @@ void Monster::move(direction_t direction) {
 		};
 		break;
 	case up:
-		if (bounding_box.y + vel < screen_size.y) {
-			next_bb.y = bounding_box.y + vel;
+		if (bounding_box.y - vel < screen_size.y) {
+			next_bb.y = bounding_box.y - vel;
 		};
 		break;
 	case down:
-		if (bounding_box.y + bounding_box.height - vel > screen_size.y + screen_size.height) {
-			next_bb.y = bounding_box.y - vel;
+		if (bounding_box.y + bounding_box.height + vel > screen_size.y + screen_size.height) {
+			next_bb.y = bounding_box.y + vel;
 		};
 		break;
 	};

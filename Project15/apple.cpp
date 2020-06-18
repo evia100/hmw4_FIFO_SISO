@@ -11,8 +11,11 @@ void Apple::move(direction_t direction) {
 }
 
 void Apple::draw() {
-	mini_gui_print_rect(mg, bounding_box, gfx);
-};
+	if (!is_drawn) {
+		mini_gui_print_rect(mg, bounding_box, gfx);
+		is_drawn = true;
+	}
+}
 
 void Apple::step(DrawableList& lst)
 {
@@ -26,8 +29,3 @@ int Apple::id() {
 void Apple::refresh() {
 	return;
 }
-
-
-
-
-
