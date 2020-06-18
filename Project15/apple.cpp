@@ -4,7 +4,7 @@
 #include "monster.h"
 
 
-Apple::Apple(unsigned short x, unsigned short y) : Drawable({x, y, 1, 1}), gfx(APPLE) {};
+Apple::Apple(unsigned short x, unsigned short y) : Drawable({x, y, 1, 1}),is_drawn(false), gfx(APPLE) {};
 
 void Apple::move(direction_t direction) {
 	return;

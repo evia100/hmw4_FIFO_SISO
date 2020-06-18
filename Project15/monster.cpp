@@ -19,6 +19,7 @@ void Monster::move(direction_t direction) {
 		current_direction = direction;
 	};
 
+
 	//get screen size
 	struct rect screen_size = mini_gui_get_screen_size(this->mg);
 
