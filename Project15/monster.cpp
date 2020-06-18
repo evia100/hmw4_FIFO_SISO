@@ -20,28 +20,28 @@ void Monster::move(direction_t direction) {
 	};
 
 	//get screen size
-	struct rect screen_size = mini_gui_get_screen_size(this->mg);
+	struct rect screen = mini_gui_get_screen_size(this->mg);
 
 	//check if the next movement is pushing the monster out of bounds.
 	//if not - set next step to this position
 	switch (current_direction) {
 	case left:
-		if (bounding_box.x - vel > screen_size.x) {
+		if (bounding_box.x - vel > screen.x) {
 			next_bb.x = bounding_box.x - vel;
 		};
 		break;
 	case right:
-		if (bounding_box.x + bounding_box.width + vel < screen_size.x + screen_size.width) {
+		if (bounding_box.x + bounding_box.width + vel < screen.x + screen.width) {
 			next_bb.x = bounding_box.x + vel;
 		};
 		break;
 	case up:
-		if (bounding_box.y - vel < screen_size.y) {
+		if (bounding_box.y - vel > screen.y) {
 			next_bb.y = bounding_box.y - vel;
 		};
 		break;
 	case down:
-		if (bounding_box.y + bounding_box.height + vel > screen_size.y + screen_size.height) {
+		if (bounding_box.y + bounding_box.height + vel < screen.y + screen.height) {
 			next_bb.y = bounding_box.y + vel;
 		};
 		break;
@@ -53,6 +53,7 @@ void Monster::move(direction_t direction) {
 void Monster::draw() {
 	mini_gui_clear_rect(mg, bounding_box);
 	mini_gui_print_rect(mg, next_bb, gfx);
+	bounding_box = next_bb;
 };
 
 int Monster::id() {
