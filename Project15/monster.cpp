@@ -7,18 +7,17 @@ Monster::Monster(unsigned short x, unsigned short y, int direction_hold) : Drawa
 level(1),
 vel(1),
 current_direction(left),
-direction_hold(0),
+direction_hold(direction_hold),
 direction_counter(0), gfx(MONSTER0),
 next_bb({ x, y, 1, 1 }) {};
 
 void Monster::move(direction_t direction) {
 
 	//checking if the object already move all the direction hold steps.
-	if (direction_counter >= direction_hold) {
+	if (direction_hold ==0 || direction_counter % direction_hold == 0) {
 		direction_counter = 0;
 		current_direction = direction;
 	};
-
 
 	//get screen size
 	struct rect screen = mini_gui_get_screen_size(this->mg);
@@ -27,27 +26,27 @@ void Monster::move(direction_t direction) {
 	//if not - set next step to this position
 	switch (current_direction) {
 	case left:
-		if (bounding_box.x - vel > screen.x) {
+		if (bounding_box.x - vel > 0) {
 			next_bb.x = bounding_box.x - vel;
 		};
 		break;
 	case right:
-		if (bounding_box.x + bounding_box.width + vel < screen.x + screen.width) {
+		if (bounding_box.x + bounding_box.width + vel < screen.width) {
 			next_bb.x = bounding_box.x + vel;
 		};
 		break;
 	case up:
-		if (bounding_box.y - vel > screen.y) {
+		if (bounding_box.y - vel > 0) {
 			next_bb.y = bounding_box.y - vel;
 		};
 		break;
 	case down:
-		if (bounding_box.y + bounding_box.height + vel < screen.y + screen.height) {
+		if (bounding_box.y + bounding_box.height + vel < screen.height) {
 			next_bb.y = bounding_box.y + vel;
 		};
 		break;
 	};
-	direction_counter++;
+	this->direction_counter++;
 }
 
 

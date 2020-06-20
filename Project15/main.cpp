@@ -7,8 +7,6 @@
 #include "drawable.h"
 #include "apple.h"
 #include "monster.h"
-#pragma warning(disable:4996)
-#pragma warning(disable:4576)
 
 /**
  * @brief Holds all properties of the world
