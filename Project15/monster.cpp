@@ -123,6 +123,7 @@ void Monster::step(DrawableList& lst)
 				}
 				lst.erase(I);
 				other_monster->refresh();
+				return;
 			}
 			else // I won
 			{

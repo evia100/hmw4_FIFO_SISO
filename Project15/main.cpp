@@ -2,7 +2,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
+#pragma warning(disable: 4996)
+#pragma warning(disable: 4576)
 #include "drawable_list.h"
 #include "drawable.h"
 #include "apple.h"
